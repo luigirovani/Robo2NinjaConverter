@@ -16,6 +16,7 @@ Instalação:
    cd Robo2NinjaConverter
 
 3. Crie um ambiente virtual e ative-o:
+   
    python -m venv .venv
    
    .venv\\Scripts\\activate  # No Windows
