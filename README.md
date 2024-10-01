@@ -31,6 +31,3 @@ Uso:
    python main.py
 
 2. Siga as instruções para selecionar seus arquivos de entrada e gerar o arquivo de saída.
-
-Licença:
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
