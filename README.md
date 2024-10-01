@@ -17,10 +17,12 @@ Instalação:
 
 3. Crie um ambiente virtual e ative-o:
    python -m venv .venv
+   
    .venv\\Scripts\\activate  # No Windows
+   
    source .venv/bin/activate  # No macOS/Linux
 
-4. Instale as dependências necessárias:
+5. Instale as dependências necessárias:
    pip install -r requirements.txt
 
 Uso:
