@@ -1,7 +1,9 @@
+import os
 import pandas as pd
 from tkinter import filedialog
 from tkinter import Tk
 
+PATTERN_NINJA_CSV = os.path.join(os.getenv('LOCALAPPDATA'), 'programs', 'Ninja Add', 'Listas', 'usuarios_backup.csv')
 
 def selecionar_arquivos():
     """Função para selecionar múltiplos arquivos via janela gráfica."""
@@ -25,6 +27,9 @@ def processar_csv(file_paths):
             df_sujo_clean = df_sujo[['user_id', 'nome', 'username']].copy()
             df_sujo_clean.columns = ['ID', 'Name', 'Username']
 
+            # O Ninja só poderá encontrar usuários que tiverem username
+            df_sujo_clean.dropna(subset=['Username'], inplace=True)
+
             # Remover duplicatas
             df_sujo_clean.drop_duplicates(subset=['ID'], inplace=True)
 
@@ -40,15 +45,13 @@ def processar_csv(file_paths):
     return consolidado
 
 
-def salvar_arquivo(consolidado):
+def salvar_arquivo(consolidado, output_path=PATTERN_NINJA_CSV):
     """Função para salvar o arquivo consolidado em formato CSV."""
     if not consolidado.empty:
-        output_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")],
-                                                   title="Salvar arquivo")
         if output_path:
-            # Salvar o arquivo CSV sem o campo Phone
             consolidado.to_csv(output_path, index=False)
             print(f"Arquivo salvo em {output_path}")
+            print('Ative a opção "backup" antes de adicionar para o Ninja Add trabalhar com ela')
         else:
             print("Nenhum local de salvamento foi selecionado.")
     else:
